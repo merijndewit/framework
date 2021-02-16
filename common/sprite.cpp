@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdio>
 
+#include <GL/glew.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
@@ -8,9 +10,13 @@
 
 #include <common/sprite.h>
 
-
 Sprite::Sprite(const std::string& imagepath)
 {
+	// Transform
+	position = glm::vec3(0.0f, 0.0f, 0.0f);
+	rotation = 0.0f;
+	scale = glm::vec3(1.0f, 1.0f, 1.0f);
+
 	// these will be set correctly in loadTGA()
 	_width = 0;
 	_height = 0;
@@ -41,10 +47,12 @@ Sprite::Sprite(const std::string& imagepath)
 		1.0f, 1.0f
 	};
 
+	// Send vertices to GPU
 	glGenBuffers(1, &_vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, _vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
+	// Send UV's to GPU
 	glGenBuffers(1, &_uvbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, _uvbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data), g_uv_buffer_data, GL_STATIC_DRAW);
@@ -52,6 +60,7 @@ Sprite::Sprite(const std::string& imagepath)
 
 Sprite::~Sprite()
 {
+	// cleanup
 	glDeleteBuffers(1, &_vertexbuffer);
 	glDeleteBuffers(1, &_uvbuffer);
 	glDeleteTextures(1, &_texture); // texture created in loadTGA() with glGenTextures()
@@ -61,9 +70,8 @@ GLuint Sprite::loadTGA(const std::string& imagepath)
 {
 	std::cout << "Loading TGA: " << imagepath << std::endl;
 
+	// Open the file on disk
 	FILE *file;
-	unsigned char type[4];
-	unsigned char info[6];
 
 	file = fopen(imagepath.c_str(), "rb");
 
@@ -72,6 +80,9 @@ GLuint Sprite::loadTGA(const std::string& imagepath)
 		return 0;
 	}
 
+	// Read header (width, height, type, bitdepth)
+	unsigned char type[4];
+	unsigned char info[6];
 	if (!fread (&type, sizeof (char), 3, file)) return 0;
 	fseek (file, 12, SEEK_SET);
 	if (!fread (&info, sizeof (char), 6, file)) return 0;
@@ -84,15 +95,13 @@ GLuint Sprite::loadTGA(const std::string& imagepath)
 		return 0;
 	}
 
-	unsigned char* data;
-	unsigned char bitdepth;
-
+	// Set width, height, bitdepth
 	_width = info[0] + info[1] * 256;
 	_height = info[2] + info[3] * 256;
-	bitdepth = info[4] / 8;
+	unsigned char bitdepth = info[4] / 8;
 
 	if (bitdepth != 1 && bitdepth != 3 && bitdepth != 4) {
-		std::cout << "bytecount not 1, 3 or 4" << std::endl;
+		std::cout << "bitdepth not 1, 3 or 4" << std::endl;
 		fclose(file);
 		return 0;
 	}
@@ -108,10 +117,11 @@ GLuint Sprite::loadTGA(const std::string& imagepath)
 		std::cout << "warning: " << imagepath << " is not square" << std::endl;
 	}
 
+	// Calculate pixelbuffer size in bytes
 	unsigned int imagesize = _width * _height * bitdepth;
 
 	// Create a buffer
-	data = new unsigned char [imagesize];
+	unsigned char* data = new unsigned char [imagesize];
 
 	// Read the actual data from the file into the buffer
 	if (!fread(data, 1, imagesize, file)) return 0;
