@@ -10,7 +10,6 @@ public:
 	MyScene();
 	virtual ~MyScene();
 
-	Sprite* kingkong;
 
 private:
 	

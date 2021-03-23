@@ -35,15 +35,6 @@ int main( void )
 	
 		// Render the scene
 		renderer.renderScene(myscene);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glBegin(GL_LINE_STRIP);
-		glVertex2f(0, 0);
-		glVertex2f(1, 1);
-		glEnd();
-
-		glfwPollEvents();
-	
-
 	} // Check if the ESC key was pressed or the window was closed
 	while( glfwGetKey(renderer.window(), GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
 		   glfwWindowShouldClose(renderer.window()) == 0 );
