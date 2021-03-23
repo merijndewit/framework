@@ -71,11 +71,15 @@ add_library(common # ar rcs libcommon.a
 	common/scene.cpp
 	common/sprite.h
 	common/sprite.cpp
+	common/entity.cpp
+	common/entity.h
 )
 
 # Demo
 add_executable(demo # g++ demo/demo.cpp -o demo
 	demo/demo.cpp
+	demo/myscene.cpp
+	demo/myscene.h
 )
 target_link_libraries(demo # g++ -lcommon
 	common

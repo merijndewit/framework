@@ -7,8 +7,13 @@
 #include <common/config.h>
 #include <common/renderer.h>
 #include <common/camera.h>
-#include <common/scene.h>
+//#include <common/scene.h>
 #include <common/sprite.h>
+#include <common/entity.h>
+
+#include "myscene.h"
+
+
 
 int main( void )
 {
@@ -16,17 +21,10 @@ int main( void )
 
 	Scene* scene = new Scene();
 
-	Sprite* kingkong = new Sprite("assets/kingkong.tga");
-	kingkong->position = glm::vec3(400.0f, 300.0f, 0.0f);
-	Sprite* pencils = new Sprite("assets/pencils.tga");
-	pencils->position = glm::vec3(900.0f, 300.0f, 0.0f);
-	Sprite* rgba = new Sprite("assets/rgba.tga");
-	rgba->position = glm::vec3(WIDTH/2, HEIGHT/2, 0.0f);
-	rgba->scale = glm::vec3(3.0f, 3.0f, 1.0f);
-
 	scene->addSprite(kingkong);
 	scene->addSprite(pencils);
 	scene->addSprite(rgba);
+
 
 	do {
 		// get deltaTime and update camera
@@ -35,10 +33,19 @@ int main( void )
 
 		// Update the scene
 		scene->update(dt); // TODO make subclass for Scene (and make Scene abstract?)
-		rgba->rotation += dt; // for now, do it here
-
+		//rgba->rotation += dt; // for now, do it here
+	
 		// Render the scene
 		renderer.renderScene(scene);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glBegin(GL_LINE_STRIP);
+		glVertex2f(0, 0);
+		glVertex2f(1, 1);
+		glEnd();
+
+		glfwPollEvents();
+	
+
 	} // Check if the ESC key was pressed or the window was closed
 	while( glfwGetKey(renderer.window(), GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
 		   glfwWindowShouldClose(renderer.window()) == 0 );
@@ -47,3 +54,5 @@ int main( void )
 
 	return 0;
 }
+
+
