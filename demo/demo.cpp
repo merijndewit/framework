@@ -19,24 +19,22 @@ int main( void )
 {
 	Renderer renderer;
 
-	Scene* scene = new Scene();
+	MyScene* myscene = new MyScene();
 
-	scene->addSprite(kingkong);
-	scene->addSprite(pencils);
-	scene->addSprite(rgba);
+	
 
 
 	do {
 		// get deltaTime and update camera
 		float dt = renderer.updateDeltaTime();
-		scene->camera()->computeViewMatrixFromInput(renderer.window(), dt);
+		myscene->camera()->computeViewMatrixFromInput(renderer.window(), dt);
 
 		// Update the scene
-		scene->update(dt); // TODO make subclass for Scene (and make Scene abstract?)
+		myscene->update(dt); // TODO make subclass for Scene (and make Scene abstract?)
 		//rgba->rotation += dt; // for now, do it here
 	
 		// Render the scene
-		renderer.renderScene(scene);
+		renderer.renderScene(myscene);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBegin(GL_LINE_STRIP);
 		glVertex2f(0, 0);
@@ -50,7 +48,7 @@ int main( void )
 	while( glfwGetKey(renderer.window(), GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
 		   glfwWindowShouldClose(renderer.window()) == 0 );
 
-	delete scene;
+	delete myscene;
 
 	return 0;
 }
