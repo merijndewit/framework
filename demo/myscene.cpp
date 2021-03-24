@@ -1,4 +1,6 @@
 #include <common/config.h>
+
+#include <common/entity.h>
 #include "myscene.h"
 
 MyScene::MyScene() : Scene()
@@ -14,6 +16,8 @@ MyScene::MyScene() : Scene()
 	this->addSprite(kingkong);
 	this->addSprite(pencils);
 	this->addSprite(rgba);
+
+	
 }
 
 MyScene::~MyScene()

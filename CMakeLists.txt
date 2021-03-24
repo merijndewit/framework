@@ -73,6 +73,8 @@ add_library(common # ar rcs libcommon.a
 	common/sprite.cpp
 	common/entity.cpp
 	common/entity.h
+	common/input.cpp
+	common/input.h
 )
 
 # Demo

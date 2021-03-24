@@ -10,9 +10,9 @@ public:
 	MyScene();
 	virtual ~MyScene();
 
-
-private:
 	
+private:
+
 };
 
 #endif /* MYSCENE_H */

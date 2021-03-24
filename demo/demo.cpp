@@ -10,6 +10,7 @@
 //#include <common/scene.h>
 #include <common/sprite.h>
 #include <common/entity.h>
+#include <common/input.h>
 
 #include "myscene.h"
 
@@ -18,21 +19,21 @@
 int main( void )
 {
 	Renderer renderer;
+	Input input;
 
 	MyScene* myscene = new MyScene();
-
 	
-
-
 	do {
 		// get deltaTime and update camera
 		float dt = renderer.updateDeltaTime();
 		myscene->camera()->computeViewMatrixFromInput(renderer.window(), dt);
-
+		glm::vec3 mp = input.getCursor();
+		input.update(renderer.window());
+		std::cout << mp.x << std::endl;
+		std::cout << mp.y << std::endl;
 		// Update the scene
 		myscene->update(dt); // TODO make subclass for Scene (and make Scene abstract?)
 		//rgba->rotation += dt; // for now, do it here
-	
 		// Render the scene
 		renderer.renderScene(myscene);
 	} // Check if the ESC key was pressed or the window was closed

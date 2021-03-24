@@ -1,8 +1,14 @@
 #include <common/config.h>
 #include <common/camera.h>
+#include <common/input.h>
+
+#include <common/entity.h>
+//#include "myscene.h"
+glm::vec3 mousePos;
 
 Camera::Camera()
 {
+	Input* input = new Input();
 	_projectionMatrix = glm::ortho(0.0f, (float)WIDTH, (float)HEIGHT, 0.0f, 0.1f, 100.0f);
 	_viewMatrix = glm::mat4(1.0f);
 	_cursor = glm::vec3( 0, 0, 0 );
@@ -16,9 +22,11 @@ Camera::~Camera()
 void Camera::computeViewMatrixFromInput(GLFWwindow* window, float deltaTime)
 {
 	// Get mouse position
+	
+	glm::vec3 mousePos = getCursor();
 	double xpos, ypos;
 	glfwGetCursorPos(window, &xpos, &ypos);
-	_cursor = glm::vec3( xpos, ypos, 0 );
+	_cursor = glm::vec3( mousePos );
 
 	// Right and Up vector
 	glm::vec3 right = glm::vec3(1, 0, 0);
