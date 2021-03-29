@@ -4,6 +4,8 @@
 #include <common/scene.h>
 #include <common/sprite.h>
 
+
+
 class Input
 {
 public:
@@ -11,14 +13,17 @@ public:
 	virtual ~Input();
 
 	void update(GLFWwindow* window);
-	void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods);
+//	void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods);
 	glm::vec3 getCursor() { return _cursor; };
 
+	static void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+	
 private:
 	glm::mat4 _viewMatrix;
 	glm::mat4 _projectionMatrix;
 	glm::vec3 _cursor;
 };
-void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods);
-	
+
+
 #endif /* INPUT_H */

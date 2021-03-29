@@ -27,7 +27,7 @@ int main( void )
 		myscene->camera()->computeViewMatrixFromInput(renderer.window(), dt);
 		glm::vec3 mp = input.getCursor();
 		input.update(renderer.window());
-		glfwSetKeyCallback(renderer.window(), keyCallBack );
+		glfwSetKeyCallback(renderer.window(), input.keyCallBack );
 		//std::cout << mp.x << std::endl;
 		//std::cout << mp.y << std::endl;
 		// Update the scene
@@ -35,6 +35,7 @@ int main( void )
 		//rgba->rotation += dt; // for now, do it here
 		// Render the scene
 		renderer.renderScene(myscene);
+
 	} // Check if the ESC key was pressed or the window was closed
 	while( glfwGetKey(renderer.window(), GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
 		   glfwWindowShouldClose(renderer.window()) == 0 );

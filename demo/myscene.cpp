@@ -1,5 +1,5 @@
 #include <common/config.h>
-
+#include <common/input.h>
 #include <common/entity.h>
 #include "myscene.h"
 
@@ -16,6 +16,9 @@ MyScene::MyScene() : Scene()
 	this->addSprite(kingkong);
 	this->addSprite(pencils);
 	this->addSprite(rgba);
+
+	//int a = getKeya();
+	//std::cout << a << std::endl;
 
 	
 }
