@@ -30,3 +30,4 @@ void Input::update(GLFWwindow* window)
 	glfwGetCursorPos(window, &xpos, &ypos);
 	_cursor = glm::vec3(xpos, ypos, 0);
 }
+

@@ -14,7 +14,7 @@
 
 #include "myscene.h"
 
-
+void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 int main( void )
 {
@@ -29,8 +29,9 @@ int main( void )
 		myscene->camera()->computeViewMatrixFromInput(renderer.window(), dt);
 		glm::vec3 mp = input.getCursor();
 		input.update(renderer.window());
-		std::cout << mp.x << std::endl;
-		std::cout << mp.y << std::endl;
+		glfwSetKeyCallback(renderer.window(), keyCallBack );
+		//std::cout << mp.x << std::endl;
+		//std::cout << mp.y << std::endl;
 		// Update the scene
 		myscene->update(dt); // TODO make subclass for Scene (and make Scene abstract?)
 		//rgba->rotation += dt; // for now, do it here
@@ -44,5 +45,8 @@ int main( void )
 
 	return 0;
 }
-
+void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	std::cout << key << std::endl;
+}
 

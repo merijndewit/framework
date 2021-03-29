@@ -118,7 +118,7 @@ public:
 
 	/// @brief get a pointer to the Input
 	/// @return Input* a pointer to the Input
-	//Input* input() { return _input; };
+
 
 	friend class Renderer;
 
@@ -142,7 +142,6 @@ private:
 	// sprite
 	Sprite* _sprite; ///< @brief The _sprite of this Entity
 
-	//Input* _input; ///< @brief the Input instance
 
 	/// @brief delete the Sprite of this Entity.
 	/// @return void

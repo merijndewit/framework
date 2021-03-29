@@ -11,6 +11,7 @@ public:
 	virtual ~Input();
 
 	void update(GLFWwindow* window);
+	void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods);
 	glm::vec3 getCursor() { return _cursor; };
 
 private:
