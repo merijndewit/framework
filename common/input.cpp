@@ -33,4 +33,10 @@ void Input::update(GLFWwindow* window)
 void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	std::cout << key << std::endl;
+
+	if (key == GLFW_KEY_SPACE)
+	{
+		std::cout << "space key is pressed" << std::endl;
+	}
+
 }
