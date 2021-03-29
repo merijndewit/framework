@@ -30,4 +30,7 @@ void Input::update(GLFWwindow* window)
 	glfwGetCursorPos(window, &xpos, &ypos);
 	_cursor = glm::vec3(xpos, ypos, 0);
 }
-
+void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	std::cout << key << std::endl;
+}

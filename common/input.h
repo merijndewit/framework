@@ -19,6 +19,6 @@ private:
 	glm::mat4 _projectionMatrix;
 	glm::vec3 _cursor;
 };
-	
+void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods);
 	
 #endif /* INPUT_H */

@@ -14,8 +14,6 @@
 
 #include "myscene.h"
 
-void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods);
-
 int main( void )
 {
 	Renderer renderer;
@@ -44,9 +42,5 @@ int main( void )
 	delete myscene;
 
 	return 0;
-}
-void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-	std::cout << key << std::endl;
 }
 
