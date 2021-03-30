@@ -9,7 +9,7 @@ class MyScene : public Scene
 public:
 	MyScene();
 	virtual ~MyScene();
-
+	void update(GLFWwindow* window);
 	
 private:
 

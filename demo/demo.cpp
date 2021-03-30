@@ -31,7 +31,7 @@ int main( void )
 		//std::cout << mp.x << std::endl;
 		//std::cout << mp.y << std::endl;
 		// Update the scene
-		myscene->update(dt); // TODO make subclass for Scene (and make Scene abstract?)
+		myscene->update(renderer.window()); // TODO make subclass for Scene (and make Scene abstract?)
 		//rgba->rotation += dt; // for now, do it here
 		// Render the scene
 		renderer.renderScene(myscene);

@@ -2,6 +2,7 @@
 #include <common/input.h>
 #include <common/entity.h>
 #include "myscene.h"
+Input input;
 
 MyScene::MyScene() : Scene()
 {
@@ -17,8 +18,7 @@ MyScene::MyScene() : Scene()
 	this->addSprite(pencils);
 	this->addSprite(rgba);
 
-	//int a = getKeya();
-	//std::cout << a << std::endl;
+	
 
 	
 }
@@ -26,4 +26,13 @@ MyScene::MyScene() : Scene()
 MyScene::~MyScene()
 {
 
+}
+
+void MyScene::update(GLFWwindow* window)
+{
+	int a = input.getKeyCode();
+
+
+		std::cout << a << std::endl;
+	
 }

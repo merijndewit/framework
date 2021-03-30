@@ -20,6 +20,7 @@ Camera::~Camera()
 
 void Camera::computeViewMatrixFromInput(GLFWwindow* window, float deltaTime)
 {
+	Input input;
 	// Right and Up vector
 	glm::vec3 right = glm::vec3(1, 0, 0);
 	glm::vec3 up = glm::vec3(0, -1, 0);
@@ -28,19 +29,19 @@ void Camera::computeViewMatrixFromInput(GLFWwindow* window, float deltaTime)
 	float speed = 300.0f; // units / second
 
 	// Move up
-	if (glfwGetKey( window, GLFW_KEY_UP ) == GLFW_PRESS){
+	if (input.getKeyCode() == 265){
 		position += up * deltaTime * speed;
 	}
 	// Move down
-	if (glfwGetKey( window, GLFW_KEY_DOWN ) == GLFW_PRESS){
+	if (input.getKeyCode() == 264){
 		position -= up * deltaTime * speed;
 	}
 	// Strafe right
-	if (glfwGetKey( window, GLFW_KEY_RIGHT ) == GLFW_PRESS){
+	if (input.getKeyCode() == 262){
 		position += right * deltaTime * speed;
 	}
 	// Strafe left
-	if (glfwGetKey( window, GLFW_KEY_LEFT ) == GLFW_PRESS){
+	if (input.getKeyCode() == 263){
 		position -= right * deltaTime * speed;
 	}
 

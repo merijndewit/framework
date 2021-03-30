@@ -10,8 +10,6 @@
 
 #include "input.h"
 
-double mousePosX;
-double mousePosY;
 
 Input::Input()
 {
@@ -30,7 +28,25 @@ void Input::update(GLFWwindow* window)
 	glfwGetCursorPos(window, &xpos, &ypos);
 	_cursor = glm::vec3(xpos, ypos, 0);
 }
+int Input::_keyCode;
 void Input::keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	std::cout << key << std::endl;
+	//std::cout << key << std::endl;
+	switch (action)
+	{
+	case GLFW_PRESS:
+		_keyCode = key;
+		std::cout << "key is prssed" << std::endl;
+		break;
+	case GLFW_REPEAT:
+		//_keyCode = key;
+		break;
+	case GLFW_RELEASE:
+		_keyCode = NULL;
+		break;
+	default:
+		//_keyCode = NULL;
+		break;
+	}
+	//_keyCode = NULL;
 }

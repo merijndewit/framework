@@ -17,12 +17,13 @@ public:
 	glm::vec3 getCursor() { return _cursor; };
 
 	static void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods);
-
-	
+	int getKeyCode() { return _keyCode; };
 private:
 	glm::mat4 _viewMatrix;
 	glm::mat4 _projectionMatrix;
 	glm::vec3 _cursor;
+	static int _keyCode;
+	
 };
 
 
