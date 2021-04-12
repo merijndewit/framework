@@ -75,6 +75,8 @@ add_library(common # ar rcs libcommon.a
 	common/entity.h
 	common/input.cpp
 	common/input.h
+	common/collision.cpp
+	common/collision.h
 )
 
 # Demo

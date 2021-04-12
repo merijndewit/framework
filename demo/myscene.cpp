@@ -2,13 +2,13 @@
 #include <common/input.h>
 #include <common/entity.h>
 #include "myscene.h"
+#include <common/collision.h>
 Input input;
+Collision collision;
 
 MyScene::MyScene() : Scene()
 {
-	
-	
-	box->position = glm::vec3(300.0f, 300.0f, 0.0f);
+	box->position = glm::vec3(200.0f, 200.0f, 0.0f);
 	Sprite* pencils = new Sprite("assets/pencils.tga");
 	pencils->position = glm::vec3(900.0f, 300.0f, 0.0f);
 	Sprite* rgba = new Sprite("assets/rgba.tga");
@@ -17,37 +17,28 @@ MyScene::MyScene() : Scene()
 	//this->addSprite(box);
 	this->addSprite(pencils);
 	this->addSprite(rgba);
-	
-	
-	
 }
 
 MyScene::~MyScene()
 {
-
 }
 
 void MyScene::update(GLFWwindow* window)
 {
 	glm::vec3 mp = input.getCursor(window);
-	std::cout << boxPlaced << std::endl;
+	//std::cout << box->position.x << std::endl;
 
-	if (mp.x >= 200 && mp.x <= 400 && mp.y >= 200 && mp.y <= 400)
+	if (collision.createBox(200, 200, 100, 100, mp.x, mp.y) == true)
 	{
-		if (boxPlaced == true)
-		{
-		
-		} 
-		else
+		if (boxPlaced == false)
 		{
 			this->addSprite(box);
 			boxPlaced = true;
 		}
 	}
-	else
+	else if (collision.createBox(200, 200, 100, 100, mp.x, mp.y) == false)
 	{
 		this->removeSprites(3);
 		boxPlaced = false;
 	}
-	
 }
