@@ -38,7 +38,6 @@ void Input::keyCallBack(GLFWwindow* window, int key, int scancode, int action, i
 		_keyCode = key;
 		break;
 	case GLFW_REPEAT:
-		std::cout << key << std::endl;
 		//_keyCode = key;
 		break;
 	case GLFW_RELEASE:

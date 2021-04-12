@@ -28,6 +28,7 @@ MyScene::MyScene() : Scene()
 	this->addSprite(box);
 	this->addSprite(box1);
 	this->addSprite(box2);
+	score = 0;
 }
 
 MyScene::~MyScene()
@@ -39,7 +40,7 @@ void MyScene::update(GLFWwindow* window)
 	glm::vec3 mp = input.getCursor(window);
 	//std::cout << box->position.x << std::endl;
 
-	if (collision.boxMouseCollision(200, 200, 100, 100, mp.x, mp.y) == true)
+	if (collision.boxMouseCollision(200, 200, 100, 100, mp.x, mp.y))
 	{
 		if (boxPlaced == false)
 		{
@@ -53,9 +54,31 @@ void MyScene::update(GLFWwindow* window)
 		boxPlaced = false;
 	}
 
-	if (collision.box2box(box1->position.x, box1->position.y, 100, 100, box2->position.x, box2->position.y, 100, 100) == true)
+	if (collision.box2box(box1->position, 100, 100, box2->position, 100, 100) && playing == true)
 	{
-		std::cout << "yeyy" << std::endl;
+		playing = false;
+		std::cout << "highscore:" << std::endl;
+		std::cout << score << std::endl;
+		score = 0;
 	}
-	box1->position.x += 0.1f;
+	
+	if (input.getKeyCode() == 32 && playing == true && box1->position.x > 150)
+	{
+		box1->position.x = 80;
+		float Distance = collision.getDistance();
+		score += 100 - Distance;
+		
+	}
+
+	if (playing == true) {
+		box1->position.x += 0.5f;
+		box2->position.x -= 0.1f;
+	}
+	if (playing == false && input.getKeyCode() == 32)
+	{
+		playing = true;
+		box1->position.x = 80;
+		box2->position.x = 1200;
+	}
+	
 }

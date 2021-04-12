@@ -18,7 +18,9 @@ public:
 	Sprite* rgba = new Sprite("assets/rgba.tga");
 	
 private:
+	bool playing = true;
 	bool boxPlaced = false;
+	float score;
 };
 
 #endif /* MYSCENE_H */
