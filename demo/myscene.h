@@ -10,7 +10,13 @@ public:
 	MyScene();
 	virtual ~MyScene();
 	void update(GLFWwindow* window);
-	Sprite* box = new Sprite("assets/box.tga");
+	Sprite* boxclick = new Sprite("assets/box.tga");
+	Sprite* box = new Sprite("assets/emptyBox.tga");
+	Sprite* box1 = new Sprite("assets/box.tga");
+	Sprite* box2 = new Sprite("assets/box.tga");
+	Sprite* pencils = new Sprite("assets/pencils.tga");
+	Sprite* rgba = new Sprite("assets/rgba.tga");
+	
 private:
 	bool boxPlaced = false;
 };

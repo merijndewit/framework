@@ -12,7 +12,8 @@ class Collision
 {
 	
 public:
-	bool Collision::createBox(float width, float height, float posx, float posy, float mousePosx, float mousePosy);
+	bool Collision::boxMouseCollision(float boxWidth, float boxHeight, float boxPosx, float boxPosy, float mousePosx, float mousePosy);
+	bool Collision::box2box(float box1Posx, float box1Posy, float box1Width, float box1Height, float box2Posx, float box2Posy, float box2Width, float box2Height);
 private:
 	
 };
