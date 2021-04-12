@@ -36,9 +36,9 @@ void Input::keyCallBack(GLFWwindow* window, int key, int scancode, int action, i
 	{
 	case GLFW_PRESS:
 		_keyCode = key;
-		std::cout << "key is prssed" << std::endl;
 		break;
 	case GLFW_REPEAT:
+		std::cout << key << std::endl;
 		//_keyCode = key;
 		break;
 	case GLFW_RELEASE:
@@ -47,6 +47,11 @@ void Input::keyCallBack(GLFWwindow* window, int key, int scancode, int action, i
 	default:
 		//_keyCode = NULL;
 		break;
+	}
+
+	if (action) {
+
+
 	}
 	//_keyCode = NULL;
 }

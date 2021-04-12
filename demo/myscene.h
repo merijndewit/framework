@@ -10,9 +10,9 @@ public:
 	MyScene();
 	virtual ~MyScene();
 	void update(GLFWwindow* window);
-	
+	Sprite* box = new Sprite("assets/box.tga");
 private:
-
+	bool boxPlaced = false;
 };
 
 #endif /* MYSCENE_H */

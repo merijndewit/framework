@@ -13,6 +13,7 @@ public:
 
 	virtual void update(float deltaTime);
 	void addSprite(Sprite* sprite);
+	void removeSprites(int spriteNumber);
 
 	Camera* camera() { return _camera; };
 	std::vector<Sprite*>& sprites() { return _sprites; };

@@ -30,3 +30,11 @@ void Scene::addSprite(Sprite* sprite)
 {
 	_sprites.push_back(sprite);
 }
+void Scene::removeSprites(int spriteNumber)
+{
+	if (_sprites.size() >= spriteNumber)
+	{
+		_sprites.erase(_sprites.begin() + (spriteNumber - 1));
+	}
+	//_sprites.clear();
+}

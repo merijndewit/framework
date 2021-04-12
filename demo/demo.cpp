@@ -25,8 +25,8 @@ int main( void )
 		// get deltaTime and update camera
 		float dt = renderer.updateDeltaTime();
 		myscene->camera()->computeViewMatrixFromInput(renderer.window(), dt);
-		glm::vec3 mp = input.getCursor();
-		input.update(renderer.window());
+		glm::vec3 mp = input.getCursor(renderer.window());
+		//input.update(renderer.window());
 		glfwSetKeyCallback(renderer.window(), input.keyCallBack );
 		//std::cout << mp.x << std::endl;
 		//std::cout << mp.y << std::endl;
